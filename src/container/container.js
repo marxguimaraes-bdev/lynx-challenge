@@ -1,5 +1,9 @@
 import React from 'react';
-import { Product } from './product';
+
+import { Reference     } from './reference';
+import { Recommendation } from './recommendation';
+
+import './container.css';
 
 export class Container extends React.Component {
     render() {
@@ -7,7 +11,10 @@ export class Container extends React.Component {
         console.log(res);
 
         return(
-            <Product item={res.data.reference.item} />
+            <div className="container">
+                <Reference reference={ res.data.reference } />
+                <Recommendation recommendation={ res.data.recommendation } />
+            </div>
         )
     }
 }

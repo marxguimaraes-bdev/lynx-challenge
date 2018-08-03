@@ -1,0 +1,31 @@
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.container {
+    display: inline-flex;
+    font-size: 8pt;
+}
+
+.reference .item {
+    padding: 5px;
+}
+
+.recommendation ol, .recommendation li, .recommendation button {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.recommendation ol, .recommendation button {
+    margin: 0;
+    padding: 0;
+}
+
+.recommendation li {
+    padding: 5px;
+}
+
+.recommendation button {
+    height: 100%;
+    width: 3%;
+}

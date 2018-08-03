@@ -1,0 +1,36 @@
+.item {
+    width: 180px;
+}
+
+img.item-image {
+    display: block;
+    margin: auto;
+    height: 150;
+    width: 150;
+}
+
+.item-name {
+    word-wrap: break-word;
+    overflow: hidden;
+    max-height: 4em;
+    line-height: 1.4em;
+    text-align:justify;
+}
+
+.price {
+    color: red;
+}
+
+.item-old-price {
+    /* To be removed */
+}
+
+.item-price > span {
+    font-size: 11pt;
+    font-weight: bold;
+}
+
+.item-payment-conditions {
+    font-weight: bold;
+   
+}
