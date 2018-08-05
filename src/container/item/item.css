@@ -1,5 +1,6 @@
 .item {
     width: 180px;
+    white-space: normal;
 }
 
 img.item-image {

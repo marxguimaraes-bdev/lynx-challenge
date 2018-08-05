@@ -11,21 +11,22 @@
     padding: 5px;
 }
 
-.recommendation ol, .recommendation li, .recommendation button {
+.recommendation .viewport {
+    width: 500px;
+    white-space: nowrap;
+    overflow-y: hidden;
+    overflow-x: auto;
+    /* -webkit-overflow-scrolliing: touch;
+    flex-grow: 1;
+    z-index: 1; 
+    position: relative; */
+}
+
+.viewport::-webkit-scrollbar {
+    display: none;
+}
+
+.recommendation .item {
     display: inline-block;
     vertical-align: top;
-}
-
-.recommendation ol, .recommendation button {
-    margin: 0;
-    padding: 0;
-}
-
-.recommendation li {
-    padding: 5px;
-}
-
-.recommendation button {
-    height: 100%;
-    width: 3%;
 }

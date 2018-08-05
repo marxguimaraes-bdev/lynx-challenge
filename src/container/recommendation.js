@@ -17,9 +17,7 @@ export class Recommendation extends React.Component {
         return (
             <div className="recommendation">
                 <Header title="e talvez se interesse por:"/>
-                <button onClick={ () => { this.back(); } }>anterior</button>
                 { this.renderWheel() }
-                <button onClick={ () => { this.forward(); } }>proximo</button>
             </div>
         );
     }
@@ -27,38 +25,59 @@ export class Recommendation extends React.Component {
     renderWheel() {
         const recommendation = this.state.recommendation;
         const products = recommendation.map((element, pos) => {
-            if (pos < this.state.maxItemsToShow)
+            //if (pos < this.state.maxItemsToShow)
                 return (
-                    <li key={element.businessId}>
-                        <Item item={ element }/>
-                    </li>
+                    <Item key={ element.businessId } item={ element }/>
                 );
-            
-                return null;
         });
 
         return (
-            <ol>{ products }</ol>
+            <div>
+                <button onClick={ () => { this.scroll(-400); } }>anterior</button>
+                <div id="viewport" className="viewport"> { products } </div>
+                <button onClick={ () => { this.scroll(400); } }>proximo</button>
+            </div>
         );
     }
 
-    back() {
-        const recommendation = this.state.recommendation.slice();
+    // scroll(value) {
+    //     const newPos = document.getElementById('viewport').scrollLeft + value;
+    //     document.getElementById('viewport').scrollLeft = newPos;
+    // }
 
-        const last = recommendation.pop();
-        this.setState({
-            recommendation: [last].concat(recommendation),
-        })
+    scroll(value) {
+        let element = document.getElementById('viewport'),
+            start = element.scrollLeft,
+            change = value,
+            currentTime = 0,
+            increment = 20,
+            duration = 600;
+            
+        let animateScroll = function() {        
+            currentTime += increment;
+            let val = smoothScrolling(currentTime, start, change, duration);
+            element.scrollLeft = val;
+            if(currentTime < duration) {
+                setTimeout(animateScroll, increment);
+            }
+        };
+        
+        animateScroll();
     }
-
-    forward() {
-        const recommendation = this.state.recommendation.slice();
-
-        const first = recommendation.shift();
-        this.setState({
-            recommendation: recommendation.concat([first]),
-        })
-    }
-
-
+    
+    
+    
 }
+
+/*  t = current time
+    b = start value
+    c = change in value
+    d = duration */
+function smoothScrolling(t, b, c, d) {
+    t /= d/2;
+    
+    if (t < 1) return c/2*t*t + b;
+        t--;
+
+    return -c/2 * (t*(t-2) - 1) + b;
+};

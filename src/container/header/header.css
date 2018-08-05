@@ -3,7 +3,7 @@
     font-weight: bold;
     border: 0;
     padding: 7px 9px;
-    color: blue;
+    color: rgb(78, 128, 154);
     background: rgba(212,228,239,1);
     background: -moz-linear-gradient(top, rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%);
     background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(212,228,239,1)), color-stop(100%, rgba(134,174,204,1)));
