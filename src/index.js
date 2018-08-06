@@ -1,5 +1,5 @@
-import React    from 'react';
-import ReactDOM from 'react-dom';
+import React      from 'react';
+import ReactDOM   from 'react-dom';
 import fetchJsonp from 'fetch-jsonp';
 
 import { Container } from './container/container';
@@ -18,7 +18,6 @@ fetchJsonp(url, {
     );
 }).catch(err => {
     ReactDOM.render(
-        <div>Houve um problema ao carregar a página</div>
-    )
-    console.error(err);
+        <div>Houve um problema ao carregar esta página</div>
+    );
 });

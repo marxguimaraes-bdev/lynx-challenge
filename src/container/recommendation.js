@@ -1,5 +1,9 @@
 import React from 'react';
 
+import { library                      } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon              } from '@fortawesome/react-fontawesome';
+import { faAngleLeft, faAngleRight    } from '@fortawesome/free-solid-svg-icons';
+
 import { Item   } from './item/item';
 import { Header } from './header/header';
 
@@ -10,7 +14,12 @@ export class Recommendation extends React.Component {
         this.state = {
             recommendation: props.recommendation,
             maxItemsToShow: 3,
+            backButtonDisabled: true,
+            forwardButtonDisabled: false,
         };
+
+        library.add(faAngleLeft);
+        library.add(faAngleRight);
     }
 
     render() {
@@ -25,25 +34,33 @@ export class Recommendation extends React.Component {
     renderWheel() {
         const recommendation = this.state.recommendation;
         const products = recommendation.map((element, pos) => {
-            //if (pos < this.state.maxItemsToShow)
-                return (
-                    <Item key={ element.businessId } item={ element }/>
-                );
+            return (
+                <Item key={ element.businessId } item={ element }/>
+            );
         });
 
         return (
             <div>
-                <button onClick={ () => { this.scroll(-400); } }>anterior</button>
-                <div id="viewport" className="viewport"> { products } </div>
-                <button onClick={ () => { this.scroll(400); } }>proximo</button>
+                <div className="wrapper">
+                    <div className="button-wrapper">
+                        <button className="scroller"
+                            disabled={ this.state.backButtonDisabled }
+                            onClick={ () => { this.scroll(-400); } }>
+                            <FontAwesomeIcon icon="angle-left" />
+                        </button>
+                    </div>
+                    <div id="viewport" className="viewport"> { products } </div>
+                    <div className="button-wrapper">
+                        <button className="scroller"
+                            disabled={ this.state.forwardButtonDisabled }
+                            onClick={ () => { this.scroll(400); } }>
+                            <FontAwesomeIcon icon="angle-right" />
+                        </button>
+                    </div>
+                </div>
             </div>
         );
     }
-
-    // scroll(value) {
-    //     const newPos = document.getElementById('viewport').scrollLeft + value;
-    //     document.getElementById('viewport').scrollLeft = newPos;
-    // }
 
     scroll(value) {
         let element = document.getElementById('viewport'),
@@ -52,16 +69,23 @@ export class Recommendation extends React.Component {
             currentTime = 0,
             increment = 20,
             duration = 600;
-            
-        let animateScroll = function() {        
+
+        let animateScroll = () => {        
             currentTime += increment;
             let val = smoothScrolling(currentTime, start, change, duration);
+
             element.scrollLeft = val;
+
+            this.setState({
+                backButtonDisabled: element.scrollLeft <= 0,
+                forwardButtonDisabled: element.scrollLeft + element.clientWidth >= element.scrollWidth,
+            });
+
             if(currentTime < duration) {
                 setTimeout(animateScroll, increment);
             }
         };
-        
+
         animateScroll();
     }
     

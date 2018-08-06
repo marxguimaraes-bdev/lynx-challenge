@@ -7,7 +7,7 @@ export function Reference(props) {
     return (
         <div className="reference">
             <Header title="Você visitou:" />
-            <Item item={props.reference.item} />
+            <Item item={ props.reference.item } />
         </div>
     );
 }

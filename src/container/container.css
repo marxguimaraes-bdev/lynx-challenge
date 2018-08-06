@@ -1,32 +1,53 @@
 * {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Verdana, Tahoma, sans-serif;
 }
 
 .container {
-    display: inline-flex;
-    font-size: 8pt;
+    display: flex;
+    font-size: 7pt;
 }
 
-.reference .item {
-    padding: 5px;
+.reference, .recommendation {
+    height: 100%;
+}
+
+.recommendation .wrapper {
+    display: table;
+}
+
+.recommendation .button-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 10px;
+}
+
+.recommendation .scroller {
+    display: block;
+    background: #caddfd;
+    border-radius: 5px;
+    border: none;
+    width: 25px;
+    height: 50px;
+    margin: 0 auto;
+}
+
+.recommendation .scroller:hover:not(:disabled) {
+    cursor: pointer;
+    background: #aecbfb;
+}
+
+.recommendation .scroller:focus:not(focus) {
+    outline: none;
 }
 
 .recommendation .viewport {
-    width: 500px;
+    display: flex;
+    width: 600px;
     white-space: nowrap;
     overflow-y: hidden;
     overflow-x: auto;
-    /* -webkit-overflow-scrolliing: touch;
-    flex-grow: 1;
-    z-index: 1; 
-    position: relative; */
 }
 
 .viewport::-webkit-scrollbar {
     display: none;
-}
-
-.recommendation .item {
-    display: inline-block;
-    vertical-align: top;
 }
