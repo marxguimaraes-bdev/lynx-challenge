@@ -41,13 +41,22 @@
 }
 
 .recommendation .viewport {
-    display: flex;
     width: 600px;
     white-space: nowrap;
     overflow-y: hidden;
     overflow-x: auto;
+    /* Slider view port compatibility for older browsers */
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: block; 
+    float: left;
+    /* Hide scrollbar on IE and Firefox */
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
 }
 
+/* Hide scrollbar on Chrome and Safari */
 .viewport::-webkit-scrollbar {
     display: none;
 }
